@@ -13,7 +13,7 @@ import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 export const store = configureStore({
   reducer: {
     todoReducer,
-    notificationReducer,
+    notificationReducer
   },
   middleware: [...getDefaultMiddleware(),loggerMiddleware]
 });
