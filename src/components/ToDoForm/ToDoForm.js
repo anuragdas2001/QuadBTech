@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import {addTodo} from "../../redux/actions/todoActions";
-import { actions } from "../../redux/reducers/todoReducer";
+import { todoActions  } from "../../redux/reducers/todoReducer";
 import "./ToDoForm.css";
 import { notificationSelector } from "../../redux/reducers/notificationReducer";
 import { resetnotification } from "../../redux/reducers/notificationReducer";
+import { collection, addDoc } from "firebase/firestore";
+import { addTodo } from "../../redux/reducers/todoReducer";
+import { fetchTodos } from "../../redux/reducers/todoReducer";
+
 function ToDoForm() {
   const [todoText, setTodoText] = useState("");
   const dispatch = useDispatch();
@@ -15,12 +19,14 @@ function ToDoForm() {
       dispatch(resetnotification());
     }, 2000);
   }
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setTodoText("");
     // console.log("[LOG]: Todo - Add Action dispatched");
-    dispatch(actions.add(todoText));
+    // dispatch(actions.add(todoText));
+    dispatch(addTodo(todoText));
   };
 
   return (

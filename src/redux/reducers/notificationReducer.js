@@ -13,11 +13,11 @@ const notificationSlice = createSlice({
       state.message = "";
     },
   },
-  //   extraReducers: {
-  //     "todo/add": (state, action) => {
-  //       state.message = "Todo is created !";
-  //     },
-  //   },
+    extraReducers: {
+      "todo/addTodo": (state, action) => {
+        state.message = "Todo is created !";
+      },
+    },
 //   extraReducers: (builder) => {
 //     builder.addCase(actions.add, (state, action) => {
 //       state.message = "Todo is created !";
@@ -26,15 +26,7 @@ const notificationSlice = createSlice({
 //       state.message = "Task completed !";
 //     });
 //   },
-        extraReducers:{
-            //map objects : [key] : value
-            [actions.add] : (state,action)=>{
-                state.message = "Todo is created !"
-            },
-            [actions.toggle] : (state,action)=>{
-                state.message = "Task completed !"
-            },
-        }
+      
 });
 
 export const notificationReducer = notificationSlice.reducer;
