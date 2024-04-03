@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions/todoActions";
-import { todoActions  } from "../../redux/reducers/todoReducer";
+import { todoActions } from "../../redux/reducers/todoReducer";
 import "./ToDoList.css";
 import { todoSelector } from "../../redux/reducers/todoReducer";
 import { useEffect } from "react";
 import { fetchTodos } from "../../redux/reducers/todoReducer";
+import { DeleteTodo } from "../../redux/reducers/todoReducer";
 function ToDoList() {
   // const todos=useSelector((state)=> state.todoReducer.todos);
   const todos = useSelector(todoSelector);
@@ -12,7 +13,7 @@ function ToDoList() {
   // const todos= store.getState().todos;
   useEffect(() => {
     dispatch(fetchTodos());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="container">
@@ -31,6 +32,14 @@ function ToDoList() {
               }}
             >
               Toggle
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                dispatch(DeleteTodo(index));
+              }}
+            >
+              Delete
             </button>
           </li>
         ))}
