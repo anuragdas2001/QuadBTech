@@ -13,18 +13,16 @@ function ToDoForm() {
   const [todoText, setTodoText] = useState("");
   const dispatch = useDispatch();
   const message = useSelector(notificationSelector);
-  console.log(message);
+  
   if (message) {
     setTimeout(() => {
       dispatch(resetnotification());
     }, 2000);
   }
-
+//Adding Todos to the list
   const handleSubmit = (e) => {
     e.preventDefault();
     setTodoText("");
-    // console.log("[LOG]: Todo - Add Action dispatched");
-    // dispatch(actions.add(todoText));
     dispatch(addTodo(todoText));
   };
 

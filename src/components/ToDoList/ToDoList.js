@@ -6,11 +6,19 @@ import { todoSelector } from "../../redux/reducers/todoReducer";
 import { useEffect } from "react";
 import { fetchTodos } from "../../redux/reducers/todoReducer";
 import { DeleteTodo } from "../../redux/reducers/todoReducer";
+import { notificationSelector } from "../../redux/reducers/notificationReducer";
+import { resetnotification } from "../../redux/reducers/notificationReducer";
 function ToDoList() {
   // const todos=useSelector((state)=> state.todoReducer.todos);
   const todos = useSelector(todoSelector);
   const dispatch = useDispatch();
   // const todos= store.getState().todos;
+  const message = useSelector(notificationSelector);
+  if (message) {
+    setTimeout(() => {
+      dispatch(resetnotification());
+    }, 2000);
+  }
   useEffect(() => {
     dispatch(fetchTodos());
   }, []);
@@ -27,7 +35,6 @@ function ToDoList() {
             <button
               className="btn btn-warning"
               onClick={() => {
-                // console.log("[LOG]: Todo - Toggle Action dispatched");
                 dispatch(todoActions.toggle(index));
               }}
             >

@@ -112,6 +112,7 @@ const todoSlice = createSlice({
         // console.log(action.payload); //The payload of the action (which is the response from the API)
         state.todos.push(action.payload);
       });
+      
   },
 });
 
