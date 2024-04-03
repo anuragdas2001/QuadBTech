@@ -23,12 +23,11 @@ export const fetchTodos = createAsyncThunk(
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(todos);
+      
       // Update the local Redux store state with fetched todos
 
       return todos;
     } catch (error) {
-      console.error("[LOG]: todo/fetchTodos/rejected", error); // Log the error for debugging
       return rejectWithValue(error.message);
     }
   }
@@ -77,7 +76,6 @@ export const DeleteTodo = createAsyncThunk(
       return index;
     } catch (error) {
       // Handle errors
-      console.error("Error deleting todo:", error);
       return rejectWithValue(error.message);
     }
   }
@@ -102,9 +100,7 @@ const todoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        console.log("fetchTodos is fulfilled !");
-        console.log(action.payload);
-        console.log(state.todos);
+        
         // state.todos = [...action.payload.data];
         state.todos = [...action.payload];
       })
